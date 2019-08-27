@@ -11,17 +11,18 @@ describe WulinMaster::Column do
     @column = WulinMaster::Column.new(:title, @grid)
   end
 
-  it 'should have a name' do
-    expect(@column.name).to eq(:title)
+  it 'should have a symbol name' do
+    column = WulinMaster::Column.new('name', @grid)
+    expect(column.name).to eq(:name)
   end
 
   it 'should have default options' do
-    expect(@column.options).to eq(width: 150, sortable: true, default_sort_asc: true)
+    expect(@column.options).to eq("width" => 150, "sortable" => true, "default_sort_asc" => true)
   end
 
   it 'can have customized options' do
     @column = WulinMaster::Column.new(:title, @grid, width: 100, editable: false, label: 'Title')
-    expect(@column.options).to eq(width: 100, sortable: true, editable: false, default_sort_asc: true, label: 'Title')
+    expect(@column.options).to eq("width" => 100, "sortable" => true, "editable" => false, "default_sort_asc" => true, "label" => 'Title')
   end
 
   it 'should have a default label from the localization file' do
